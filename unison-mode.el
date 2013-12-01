@@ -19,7 +19,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; Latest versio available at https://github.com/impaktor
+;; Latest versio available at https://github.com/impaktor/unison-mode
 
 ;; Install by putting this file in ~/.emacs.d/elisp/ and this code in your
 ;; emacs configuration (~/.emacs):
@@ -36,25 +36,8 @@
 
 ;;; Code:
 
-
 ;; allow users to have hooks with this mode
-(defvar unison-mode-hook nil)
-
-
-;; Allows thie mode, and users, to define their own keymaps. Initial
-;; seting is default keybindings. If only a few keybindings, one can
-;; use "make-sparse-keymap" rather than "make-keymap"
-(defvar unison-mode-map
-  (let ((map (make-keymap)))
-    (define-key map "\C-j" 'newline-and-indent)
-    map)
-  "Keymap for unison major mode")
-
-
-;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.prf\\'" . unison-mode))
-;; start unison-mode, could be left for user to put in their config.
-
+(defvar unison-mode-hook nil "Hook run after `unison-mode'.")
 
 
 (defvar unison-basic
@@ -114,6 +97,7 @@
 ;; are prefixed with a "?".
 (defvar unison-mode-syntax-table
   (let ((st (make-syntax-table)))
+    (modify-syntax-entry ?_  "w"  st)  ; word constituent
     (modify-syntax-entry ?#  "<"  st)  ; coment start
     (modify-syntax-entry ?\n ">"  st)  ; coment end
     st)
@@ -121,14 +105,10 @@
 
 
 ;; entry function, to be called by emacs when we enter the mode:
+;;;###autoload
 (define-derived-mode unison-mode prog-mode "Unison"
   "Majoe mode for font-lcoking unison configuration files"
   :syntax-table unison-mode-syntax-table
-
-  ;;   (use-local-map unison-mode-map) ; ? needed?
-
-  ;; (set (make-local-variable 'indent-line-function) ; indentation
-  ;;      'unison-indent-line)
 
   (set (make-local-variable 'font-lock-defaults)      ; font lock
        '(unison-font-lock-keywords))
