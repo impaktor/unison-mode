@@ -39,6 +39,14 @@
 ;; allow users to have hooks with this mode
 (defvar unison-mode-hook nil "Hook run after `unison-mode'.")
 
+(defvar unison-command "unison-gtk2" "Command to run graphical unison")
+
+(defvar unison-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c C-c") 'unison-run)
+    map)
+  "Keymap for `unison-mode'.")
+
 
 (defvar unison-basic
   (regexp-opt
@@ -119,6 +127,13 @@
   (set (make-local-variable 'comment-start-skip) "#+\\s-*")
 
   (run-hooks 'unison-mode-hook))  ; run user hooks last.
+
+
+(defun unison-run ()
+  "Run an instance of Unison"
+  (interactive)
+  (shell-command unison-command))
+
 
 (provide 'unison-mode)
 ;;; unison-mode.el ends here
