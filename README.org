@@ -1,0 +1,19 @@
+#+TITLE unison-mode
+
+* Introduction
+  This mode was written to add syntax highlighting to unison configuration
+  files, and also as an exercise for myself to learn to write a major mode for
+  Emacs.
+
+* Install
+  Put the file =unison-mode.el= in your load-path. If you do not have a load
+  path, then add one, that points to the folder where you placed the file:
+#+begin_src emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/elisp/")
+#+end_src
+
+  Secondly, to use the mode for all *prf files:
+#+begin_src emacs-lisp
+  (autoload 'unison-mode "unison-mode" "my unison mode" t)
+  (setq auto-mode-alist (append '(("\\.prf$" . unison-mode)) auto-mode-alist))
+#+end_src
