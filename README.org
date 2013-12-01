@@ -17,3 +17,10 @@
   (autoload 'unison-mode "unison-mode" "my unison mode" t)
   (setq auto-mode-alist (append '(("\\.prf$" . unison-mode)) auto-mode-alist))
 #+end_src
+
+* Usage
+  The key binding =C-c C-c= launches unison. Default command is
+  =unison-gtk2=. This can be set with:
+  #+begin_src emacs-lisp
+  (defvar unison-command "unison-gtk2")
+  #+end_src
