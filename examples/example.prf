@@ -1,0 +1,39 @@
+# -*- unison-mode -*-
+
+# this filr is just an example of syntax highlighting in unison-mode
+
+#don't do file operations in threads. (fragmentation of FAT-disk)
+maxthreads = 1
+
+# place new files at the top of the list
+sortnewfirst = true
+
+# turn on ssh compression
+rshargs = -C
+
+#include the .unison/common.prf profile:
+include common
+
+# For FAT systems set perms=0, ignorecase=true, links=false, never use
+# chmod: Use this when syncing against a FAT-disk.
+fat = true
+
+# synch from --> to:
+root = /home/foo/
+root = /media/disk/
+
+log = true
+logfile = /home/foo/.unison/unison.log
+
+path = .aspell.en.pws
+path = .aspell.en.prepl
+path = .emacs.d/elisp
+ignore = Path .emacs.d/elisp/yasnippet
+
+ignore = Name .unison/ar*
+ignore = Name .unison/fp*
+ignore = Name .*~
+ignore = Name *.tmp
+ignore = Name *.o
+ignore = Name */a.out
+ignore = Regex .*\.svn

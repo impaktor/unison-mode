@@ -24,3 +24,7 @@
   #+begin_src emacs-lisp
   (defvar unison-command "unison-gtk2")
   #+end_src
+* Example
+  Screenshot from emacs using zenburn-theme.
+
+  [[file:examples/screenshot.png]]
