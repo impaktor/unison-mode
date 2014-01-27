@@ -134,6 +134,8 @@
   (interactive)
   (shell-command unison-command))
 
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.prf$" . unison-mode))
 
 (provide 'unison-mode)
 ;;; unison-mode.el ends here
