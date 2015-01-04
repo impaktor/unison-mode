@@ -50,7 +50,7 @@
 
 (defvar unison-basic
   (regexp-opt
-   '("auto" "batch" "fat" "group" "ignore" "nocreation" "nodeletion"
+   '("auto" "batch" "fat" "group" "ignore" "ignorenot" "nocreation" "nodeletion"
      "noupdate" "owner" "path" "perms" "root" "silent" "terse"
      "testserver" "times" "version")
    'words)
@@ -60,16 +60,16 @@
 (defvar unison-advanced
   (regexp-opt
    '("addprefsto" "addversionno" "backup" "backupcurr" "backupcurrnot"
-     "backupdir" "backuploc" "backupnot" "backupprefix" "backups"
-     "confirmbigdel" "confirmmerge" "contactquietly" "copyprog"
+     "backupdir" "backuploc" "backupnot" "backupprefix" "backups" "backupsuffix"
+     "confirmbigdel" "confirmmerge" "contactquietly" "copymax" "copyprog"
      "copyprogrest" "copyquoterem" "copythreshold" "debug" "diff"
      "dontchmod" "dumbtty" "fastcheck" "follow" "force" "forcepartial"
-     "halfduplex" "height" "host" "ignorecase" "ignoreinodenumbers"
+     "halfduplex" "height" "host" "ignorearchives" "ignorecase" "ignoreinodenumbers"
      "ignorelocks" "immutable" "immutablenot" "key" "killserver" "label"
      "links" "log" "logfile" "maxbackups" "maxerrors" "maxthreads"
      "merge" "nocreationpartial" "nodeletionpartial" "noupdatepartial"
      "numericids" "prefer" "preferpartial" "repeat" "retry" "rootalias"
-     "rsrc" "rsync" "selftest" "servercmd" "showarchive" "sortbysize"
+     "rsrc" "rsync" "selftest" "servercmd" "socket" "showarchive" "sortbysize"
      "sortfirst" "sortlast" "sortnewfirst" "sshargs" "sshcmd" "stream"
      "ui" "unicode" "xferbycopying")
    'words)
