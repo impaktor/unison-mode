@@ -85,7 +85,7 @@
 
 (defvar unison-foo
   (regexp-opt
-   '("Path" "Name" "Regex")
+   '("Path" "Name" "Regex" "BelowPath")
    'words)
   "random words")
 
