@@ -110,7 +110,10 @@ but the syntax highlighting does not reflect this fully.")
     (,unison-advanced . font-lock-builtin-face)
     (,unison-matcher  1 font-lock-keyword-face)
     (,unison-other    . font-lock-type-face)
-    ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)))
+    ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)
+    ;; Unison-modes comment only works
+    ;; when # is the first non-whitespace character.
+    ("^[:blank:]*\\(#.*\\)$" . font-lock-comment-face)))
 
 
 ;; Tell emacs what is a word, etc. Usied by syntax highlighting
@@ -119,8 +122,6 @@ but the syntax highlighting does not reflect this fully.")
 (defvar unison-mode-syntax-table
   (let ((st (make-syntax-table)))
     (modify-syntax-entry ?_  "w"  st)  ; word constituent
-    (modify-syntax-entry ?#  "<"  st)  ; coment start
-    (modify-syntax-entry ?\n ">"  st)  ; coment end
     st)
   "Syntax table for unison-mode")
 
