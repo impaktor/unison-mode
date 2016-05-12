@@ -97,7 +97,7 @@
            'words))
   "List of words that heads a Unison matcher.
 
-A unison matcher contains one of these keywords followed by a glob.
+A Unison matcher contains one of these keywords followed by a glob.
 It is only meaningful as the first word in certain options
 \(such as ignore, ignorenot &c.\)
 but the syntax highlighting does not reflect this fully.")
@@ -129,7 +129,7 @@ but the syntax highlighting does not reflect this fully.")
 ;; entry function, to be called by emacs when we enter the mode:
 ;;;###autoload
 (define-derived-mode unison-mode prog-mode "Unison"
-  "Majoe mode for font-lcoking unison configuration files"
+  "Major mode for font-lcoking unison configuration files"
   :syntax-table unison-mode-syntax-table
 
   (set (make-local-variable 'font-lock-defaults)      ; font lock
