@@ -90,7 +90,7 @@
   "random words")
 
 
-(defvar unison-foo
+(defvar unison-matcher
   (concat "=[:blank:]*"
           (regexp-opt
            '("Path" "Name" "Regex" "BelowPath")
@@ -108,7 +108,7 @@ but the syntax highlighting does not reflect this fully.")
 (defvar unison-font-lock-keywords
   `((,unison-basic    . font-lock-function-name-face)
     (,unison-advanced . font-lock-builtin-face)
-    (,unison-foo      . font-lock-keyword-face)
+    (,unison-matcher  1 font-lock-keyword-face)
     (,unison-other    . font-lock-type-face)
     ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)))
 
