@@ -49,7 +49,7 @@
 
 
 (defvar unison-basic
-  (concat "^[:blank:]*"
+  (concat "^[ \t]*"
           (regexp-opt
            '("auto" "batch" "fat" "group" "ignore" "ignorenot" "nocreation"
              "nodeletion" "noupdate" "owner" "path" "perms" "root"
@@ -59,7 +59,7 @@
 
 
 (defvar unison-advanced
-  (concat "^[:blank:]*"
+  (concat "^[ \t]*"
           (regexp-opt
            '("addprefsto" "addversionno" "backup" "backupcurr"
              "backupcurrnot" "backupdir" "backuploc" "backupnot"
@@ -83,7 +83,7 @@
 
 
 (defvar unison-other
-  (concat "^[:blank:]*"
+  (concat "^[ \t]*"
           (regexp-opt
            '("rshargs" "include")
            'words))
@@ -91,7 +91,7 @@
 
 
 (defvar unison-matcher
-  (concat "=[:blank:]*"
+  (concat "=[ \t]*"
           (regexp-opt
            '("Path" "Name" "Regex" "BelowPath")
            'words))
@@ -113,7 +113,7 @@ but the syntax highlighting does not reflect this fully.")
     ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)
     ;; Unison-modes comment only works
     ;; when # is the first non-whitespace character.
-    ("^[:blank:]*\\(#.*\\)$" . font-lock-comment-face)))
+    ("^[ \t]*\\(#.*\\)$" . font-lock-comment-face)))
 
 
 ;; Tell emacs what is a word, etc. Usied by syntax highlighting
