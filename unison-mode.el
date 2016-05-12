@@ -74,7 +74,7 @@
              "maxerrors" "maxthreads" "merge" "nocreationpartial"
              "nodeletionpartial" "noupdatepartial" "numericids"
              "prefer" "preferpartial" "repeat" "retry" "rootalias"
-             "rsrc" "rsync" "selftest" "servercmd" "socket"
+             "rshargs" "rsrc" "rsync" "selftest" "servercmd" "socket"
              "showarchive" "sortbysize" "sortfirst" "sortlast"
              "sortnewfirst" "sshargs" "sshcmd" "stream" "ui" "unicode"
              "xferbycopying")
@@ -82,12 +82,12 @@
   "A list of words that include advanced Unison options.")
 
 
-(defvar unison-other
+(defvar unison-profile
   (concat "^[ \t]*"
           (regexp-opt
-           '("rshargs" "include")
+           '("include")
            'words))
-  "random words")
+  "Words that modify profile information.")
 
 
 (defvar unison-matcher
@@ -109,7 +109,7 @@ but the syntax highlighting does not reflect this fully.")
   `((,unison-basic    . font-lock-function-name-face)
     (,unison-advanced . font-lock-builtin-face)
     (,unison-matcher  1 font-lock-keyword-face)
-    (,unison-other    . font-lock-type-face)
+    (,unison-profile  . font-lock-type-face)
     ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)
     ;; Unison-modes comment only works
     ;; when # is the first non-whitespace character.
