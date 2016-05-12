@@ -106,14 +106,14 @@ but the syntax highlighting does not reflect this fully.")
 ;; "<>" is used to match only whole words, i.e. preceeded and/or
 ;; followed by new line, or space.
 (defvar unison-font-lock-keywords
-  `((,unison-basic    . font-lock-function-name-face)
+  `(;; Unison-modes comment only works
+    ;; when # is the first non-whitespace character.
+    ("^[ \t]*\\(#.*\\)$" . font-lock-comment-face)
+    (,unison-basic    . font-lock-function-name-face)
     (,unison-advanced . font-lock-builtin-face)
     (,unison-matcher  1 font-lock-keyword-face)
     (,unison-profile  . font-lock-type-face)
-    ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)
-    ;; Unison-modes comment only works
-    ;; when # is the first non-whitespace character.
-    ("^[ \t]*\\(#.*\\)$" . font-lock-comment-face)))
+    ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)))
 
 
 ;; Tell emacs what is a word, etc. Usied by syntax highlighting
