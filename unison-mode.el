@@ -49,45 +49,58 @@
 
 
 (defvar unison-basic
-  (regexp-opt
-   '("auto" "batch" "fat" "group" "ignore" "ignorenot" "nocreation" "nodeletion"
-     "noupdate" "owner" "path" "perms" "root" "silent" "terse"
-     "testserver" "times" "version")
-   'words)
-  "basic unison options")
+  (concat "^[:blank:]*"
+          (regexp-opt
+           '("auto" "batch" "fat" "group" "ignore" "ignorenot" "nocreation"
+             "nodeletion" "noupdate" "owner" "path" "perms" "root"
+             "silent" "terse" "testserver" "times" "version")
+           'words))
+  "A list of words that indicate basic Unison options.")
 
 
 (defvar unison-advanced
-  (regexp-opt
-   '("addprefsto" "addversionno" "backup" "backupcurr" "backupcurrnot"
-     "backupdir" "backuploc" "backupnot" "backupprefix" "backups" "backupsuffix"
-     "confirmbigdel" "confirmmerge" "contactquietly" "copymax" "copyprog"
-     "copyprogrest" "copyquoterem" "copythreshold" "debug" "diff"
-     "dontchmod" "dumbtty" "fastcheck" "follow" "force" "forcepartial"
-     "halfduplex" "height" "host" "ignorearchives" "ignorecase" "ignoreinodenumbers"
-     "ignorelocks" "immutable" "immutablenot" "key" "killserver" "label"
-     "links" "log" "logfile" "maxbackups" "maxerrors" "maxthreads"
-     "merge" "nocreationpartial" "nodeletionpartial" "noupdatepartial"
-     "numericids" "prefer" "preferpartial" "repeat" "retry" "rootalias"
-     "rsrc" "rsync" "selftest" "servercmd" "socket" "showarchive" "sortbysize"
-     "sortfirst" "sortlast" "sortnewfirst" "sshargs" "sshcmd" "stream"
-     "ui" "unicode" "xferbycopying")
-   'words)
-  "advanced unison options")
+  (concat "^[:blank:]*"
+          (regexp-opt
+           '("addprefsto" "addversionno" "backup" "backupcurr"
+             "backupcurrnot" "backupdir" "backuploc" "backupnot"
+             "backupprefix" "backups" "backupsuffix" "confirmbigdel"
+             "confirmmerge" "contactquietly" "copymax" "copyprog"
+             "copyprogrest" "copyquoterem" "copythreshold" "debug"
+             "diff" "dontchmod" "dumbtty" "fastcheck" "follow" "force"
+             "forcepartial" "halfduplex" "height" "host"
+             "ignorearchives" "ignorecase" "ignoreinodenumbers"
+             "ignorelocks" "immutable" "immutablenot" "key"
+             "killserver" "label" "links" "log" "logfile" "maxbackups"
+             "maxerrors" "maxthreads" "merge" "nocreationpartial"
+             "nodeletionpartial" "noupdatepartial" "numericids"
+             "prefer" "preferpartial" "repeat" "retry" "rootalias"
+             "rsrc" "rsync" "selftest" "servercmd" "socket"
+             "showarchive" "sortbysize" "sortfirst" "sortlast"
+             "sortnewfirst" "sshargs" "sshcmd" "stream" "ui" "unicode"
+             "xferbycopying")
+           'words))
+  "A list of words that include advanced Unison options.")
 
 
 (defvar unison-other
-  (regexp-opt
-   '("rshargs" "include")
-   'words)
+  (concat "^[:blank:]*"
+          (regexp-opt
+           '("rshargs" "include")
+           'words))
   "random words")
 
 
 (defvar unison-foo
-  (regexp-opt
-   '("Path" "Name" "Regex" "BelowPath")
-   'words)
-  "random words")
+  (concat "=[:blank:]*"
+          (regexp-opt
+           '("Path" "Name" "Regex" "BelowPath")
+           'words))
+  "List of words that heads a Unison matcher.
+
+A unison matcher contains one of these keywords followed by a glob.
+It is only meaningful as the first word in certain options
+\(such as ignore, ignorenot &c.\)
+but the syntax highlighting does not reflect this fully.")
 
 
 ;; "<>" is used to match only whole words, i.e. preceeded and/or
