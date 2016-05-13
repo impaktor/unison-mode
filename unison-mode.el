@@ -49,54 +49,70 @@
 
 
 (defvar unison-basic
-  (regexp-opt
-   '("auto" "batch" "fat" "group" "ignore" "ignorenot" "nocreation" "nodeletion"
-     "noupdate" "owner" "path" "perms" "root" "silent" "terse"
-     "testserver" "times" "version")
-   'words)
-  "basic unison options")
+  (concat "^[ \t]*"
+          (regexp-opt
+           '("auto" "batch" "fat" "group" "ignore" "ignorenot" "nocreation"
+             "nodeletion" "noupdate" "owner" "path" "perms" "root"
+             "silent" "terse" "testserver" "times" "version")
+           'words))
+  "A list of words that indicate basic Unison options.")
 
 
 (defvar unison-advanced
-  (regexp-opt
-   '("addprefsto" "addversionno" "backup" "backupcurr" "backupcurrnot"
-     "backupdir" "backuploc" "backupnot" "backupprefix" "backups" "backupsuffix"
-     "confirmbigdel" "confirmmerge" "contactquietly" "copymax" "copyprog"
-     "copyprogrest" "copyquoterem" "copythreshold" "debug" "diff"
-     "dontchmod" "dumbtty" "fastcheck" "follow" "force" "forcepartial"
-     "halfduplex" "height" "host" "ignorearchives" "ignorecase" "ignoreinodenumbers"
-     "ignorelocks" "immutable" "immutablenot" "key" "killserver" "label"
-     "links" "log" "logfile" "maxbackups" "maxerrors" "maxthreads"
-     "merge" "nocreationpartial" "nodeletionpartial" "noupdatepartial"
-     "numericids" "prefer" "preferpartial" "repeat" "retry" "rootalias"
-     "rsrc" "rsync" "selftest" "servercmd" "socket" "showarchive" "sortbysize"
-     "sortfirst" "sortlast" "sortnewfirst" "sshargs" "sshcmd" "stream"
-     "ui" "unicode" "xferbycopying")
-   'words)
-  "advanced unison options")
+  (concat "^[ \t]*"
+          (regexp-opt
+           '("addprefsto" "addversionno" "backup" "backupcurr"
+             "backupcurrnot" "backupdir" "backuploc" "backupnot"
+             "backupprefix" "backups" "backupsuffix" "confirmbigdel"
+             "confirmmerge" "contactquietly" "copymax" "copyprog"
+             "copyprogrest" "copyquoterem" "copythreshold" "debug"
+             "diff" "dontchmod" "dumbtty" "fastcheck" "follow" "force"
+             "forcepartial" "halfduplex" "height" "host"
+             "ignorearchives" "ignorecase" "ignoreinodenumbers"
+             "ignorelocks" "immutable" "immutablenot" "key"
+             "killserver" "label" "links" "log" "logfile" "maxbackups"
+             "maxerrors" "maxthreads" "merge" "nocreationpartial"
+             "nodeletionpartial" "noupdatepartial" "numericids"
+             "prefer" "preferpartial" "repeat" "retry" "rootalias"
+             "rshargs" "rsrc" "rsync" "selftest" "servercmd" "socket"
+             "showarchive" "sortbysize" "sortfirst" "sortlast"
+             "sortnewfirst" "sshargs" "sshcmd" "stream" "ui" "unicode"
+             "xferbycopying")
+           'words))
+  "A list of words that include advanced Unison options.")
 
 
-(defvar unison-other
-  (regexp-opt
-   '("rshargs" "include")
-   'words)
-  "random words")
+(defvar unison-profile
+  (concat "^[ \t]*"
+          (regexp-opt
+           '("include")
+           'words))
+  "Words that modify profile information.")
 
 
-(defvar unison-foo
-  (regexp-opt
-   '("Path" "Name" "Regex" "BelowPath")
-   'words)
-  "random words")
+(defvar unison-matcher
+  (concat "=[ \t]*"
+          (regexp-opt
+           '("Path" "Name" "Regex" "BelowPath")
+           'words))
+  "List of words that heads a Unison matcher.
+
+A Unison matcher contains one of these keywords followed by a glob.
+It is only meaningful as the first word in certain options
+\(such as ignore, ignorenot &c.\)
+but the syntax highlighting does not reflect this fully.")
 
 
 ;; "<>" is used to match only whole words, i.e. preceeded and/or
 ;; followed by new line, or space.
 (defvar unison-font-lock-keywords
-  `((,unison-basic    . font-lock-function-name-face)
+  `(;; Unison-modes comment only works
+    ;; when # is the first non-whitespace character.
+    ("^[ \t]*\\(#.*\\)$" . font-lock-comment-face)
+    (,unison-basic    . font-lock-function-name-face)
     (,unison-advanced . font-lock-builtin-face)
-    (,unison-foo      . font-lock-keyword-face)
-    (,unison-other    . font-lock-type-face)
+    (,unison-matcher  1 font-lock-keyword-face)
+    (,unison-profile  . font-lock-type-face)
     ("\\<\\(true\\|false\\)\\>" . font-lock-constant-face)))
 
 
@@ -106,8 +122,6 @@
 (defvar unison-mode-syntax-table
   (let ((st (make-syntax-table)))
     (modify-syntax-entry ?_  "w"  st)  ; word constituent
-    (modify-syntax-entry ?#  "<"  st)  ; coment start
-    (modify-syntax-entry ?\n ">"  st)  ; coment end
     st)
   "Syntax table for unison-mode")
 
@@ -115,7 +129,7 @@
 ;; entry function, to be called by emacs when we enter the mode:
 ;;;###autoload
 (define-derived-mode unison-mode prog-mode "Unison"
-  "Majoe mode for font-lcoking unison configuration files"
+  "Major mode for font-lcoking unison configuration files"
   :syntax-table unison-mode-syntax-table
 
   (set (make-local-variable 'font-lock-defaults)      ; font lock
